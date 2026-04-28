@@ -1,0 +1,54 @@
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+.next/
+out/
+build/
+dist/
+
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+*.tsbuildinfo
+.next/types/        # Next.js generate types
+dist/               # TS compile output (backend)
+build/              # nếu dùng tsc build
+*.d.ts.map
+
+.cache/
+.tmp/
+temp/
+
+coverage/
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+uploads/
+public/uploads/
+
+.dockerignore
+docker-compose.override.yml
+
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
