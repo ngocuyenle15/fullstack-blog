@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import api from '@/lib/api';
 
 export default function PostsPage() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -9,9 +10,8 @@ export default function PostsPage() {
   const [author, setAuthor] = useState('');
 
   const fetchPosts = async () => {
-    const res = await fetch('http://localhost:5000/api/posts');
-    const data = await res.json();
-    setPosts(data);
+    const res = await api.get('/api/posts');
+    setPosts(res.data);
   };
 
   useEffect(() => {
@@ -21,17 +21,15 @@ export default function PostsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:5000/api/posts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content, author }),
-    });
+    try {
+      await api.post('/api/posts', { title, content, author });
 
-    if (res.ok) {
       setTitle('');
       setContent('');
       setAuthor('');
       fetchPosts(); // refresh danh sách
+    } catch (err: any) {
+      console.error(err.response?.data?.error);
     }
   };
 
